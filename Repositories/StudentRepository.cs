@@ -99,6 +99,9 @@ namespace College_EFCore_Linq_Task.Repositories
             return _context.Students.Where(s => DateTime.Now.Subtract(s.DOB) > age);
         }
 
-        
+        public IEnumerable<Student> PaginateStudents(int page, int pageSize)
+        {
+            return _context.Students.Skip((page-1)*pageSize).Take(pageSize).ToList();
+        }
     }
 }
